@@ -1,0 +1,81 @@
+/* Stack Sans Text Font Override */
+
+/* Base font family override */
+html, body {
+  font-family: "Stack Sans Text", sans-serif !important;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+/* Override all existing font family declarations */
+.heading-15, .heading-19, .heading-22, .heading-23 {
+  font-family: "Stack Sans Text", sans-serif !important;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Text elements */
+.paragraph-23, .paragraph-32, .paragraph-33, .paragraph-42, .paragraph-47, .paragraph-49 {
+  font-family: "Stack Sans Text", sans-serif !important;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Navigation and buttons */
+.nav-link, .button-3, .tab-link {
+  font-family: "Stack Sans Text", sans-serif !important;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* Text blocks and general text */
+.text-block-13, .text-block-15, .text-block-16, .text-block-19, .text-block-20, .text-block-22, .text-block-26, .text-block-27, .text-block-31, .text-block-32 {
+  font-family: "Stack Sans Text", sans-serif !important;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Links */
+.link, .link-text, .link-28, .link-30, .link-32, .link-34, .link-new-tab {
+  font-family: "Stack Sans Text", sans-serif !important;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Lists */
+.list-link-2 {
+  font-family: "Stack Sans Text", sans-serif !important;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Bold text */
+.bold-text-8, .bold-text-12 {
+  font-family: "Stack Sans Text", sans-serif !important;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Override any remaining font family declarations */
+* {
+  font-family: "Stack Sans Text", sans-serif !important;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+/* Preserve monospace for code elements */
+code, kbd, pre, samp, .code {
+  font-family: "Inconsolata", monospace !important;
+}
+
+/* Preserve icon fonts */
+[class*="w-icon"], .w-icon-slider-left, .w-icon-slider-right {
+  font-family: webflow-icons !important;
+}
