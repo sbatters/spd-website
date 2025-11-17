@@ -1,0 +1,21 @@
+/* Custom CSS to make timeline cards always visible */
+
+/* Override inline opacity: 0 styles on timeline content cards */
+.timelinecontentappear {
+  opacity: 1 !important;
+  display: inline-block !important;
+}
+
+/* Ensure proper visibility and styling for timeline cards */
+.timelinecontentappear h1.heading-15 {
+  color: #f1c84b;
+}
+
+.timelinecontentappear p.paragraph-23 {
+  color: #ffffff;
+}
+
+/* Optional: Add a subtle animation for better UX */
+.timelinecontentappear {
+  transition: opacity 0.3s ease-in-out;
+}

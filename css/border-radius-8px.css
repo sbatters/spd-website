@@ -1,0 +1,180 @@
+/* Content Block Border Radius Override - 8px for all content blocks */
+
+/* Main content blocks */
+.main-content-block {
+    border-radius: 8px !important;
+}
+
+.main-content-block.weapons {
+    border-radius: 8px !important;
+}
+
+.main-content-block.types-of-weapons {
+    border-radius: 8px !important;
+}
+
+/* Resource blocks */
+.resource-block {
+    border-radius: 8px !important;
+}
+
+.resource-block.with-divider {
+    border-radius: 8px !important;
+}
+
+/* Timeline and collection blocks */
+.timelinecontentappear {
+    border-radius: 8px !important;
+}
+
+.collection-item-6 {
+    border-radius: 8px !important;
+}
+
+.collection-list-wrapper-2 {
+    border-radius: 8px !important;
+}
+
+/* Modal and popup blocks */
+.modal {
+    border-radius: 8px !important;
+}
+
+.modal.inner {
+    border-radius: 8px !important;
+}
+
+.modal.front {
+    border-radius: 8px !important;
+}
+
+.statement-modal {
+    border-radius: 8px !important;
+}
+
+.cs-pop-up {
+    border-radius: 8px !important;
+}
+
+/* Content containers and wrappers */
+.statement {
+    border-radius: 8px !important;
+}
+
+.lightbox {
+    border-radius: 8px !important;
+}
+
+.item {
+    border-radius: 8px !important;
+}
+
+/* Div blocks that serve as content containers */
+.div-block-68 {
+    border-radius: 8px !important;
+}
+
+.div-block-69 {
+    border-radius: 8px !important;
+}
+
+.div-block-72 {
+    border-radius: 8px !important;
+}
+
+.div-block-74 {
+    border-radius: 8px !important;
+}
+
+/* Form and input blocks */
+.form-block {
+    border-radius: 8px !important;
+}
+
+.container-2 {
+    border-radius: 8px !important;
+}
+
+/* Card and image blocks */
+.card-header {
+    border-radius: 8px !important;
+}
+
+.image {
+    border-radius: 8px !important;
+}
+
+/* Filter and button blocks */
+.filter-button {
+    border-radius: 8px !important;
+}
+
+/* Text blocks that function as content containers */
+.text-block-15,
+.text-block-16,
+.text-block-19,
+.text-block-20,
+.text-block-22,
+.text-block-23,
+.text-block-24,
+.text-block-26,
+.text-block-27,
+.text-block-31,
+.text-block-32 {
+    border-radius: 8px !important;
+}
+
+/* Paragraph blocks with background styling */
+.paragraph-40,
+.paragraph-41,
+.paragraph-42,
+.paragraph-43,
+.paragraph-44,
+.paragraph-45,
+.paragraph-46 {
+    border-radius: 8px !important;
+}
+
+/* Additional content wrappers */
+.thumbnail-block {
+    border-radius: 8px !important;
+}
+
+.logo-block {
+    border-radius: 8px !important;
+}
+
+/* Tabs content */
+.tabs-content {
+    border-radius: 8px !important;
+}
+
+/* Quote blocks */
+.quote {
+    border-radius: 8px !important;
+}
+
+/* Any generic block elements that might serve as content containers */
+.w-block {
+    border-radius: 8px !important;
+}
+
+/* Commerce and checkout blocks */
+.w-commerce-commercecheckoutblockheader,
+.w-commerce-commercecheckoutblockcontent {
+    border-radius: 8px !important;
+}
+
+/* Override any existing smaller border-radius values */
+[class*="block"],
+[class*="content"],
+[class*="container"],
+[class*="wrapper"] {
+    border-radius: 8px !important;
+}
+
+/* Ensure divs with background colors or borders get rounded corners */
+div[style*="background-color"],
+div[style*="border"] {
+    border-radius: 8px !important;
+}
