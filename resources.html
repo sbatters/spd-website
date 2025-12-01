@@ -63,6 +63,36 @@
 " class="icon_link"/><p class="link-11"><a href="https://www.washingtonpost.com/graphics/investigations/police-shootings-database/" target="_blank" class="link-11">Washington Post maintains a data base on killings by police, “Fatal Force”<br/></a></p></li><li class="link-list"><img src="cdn.prod.website-files.com/5ad7793856a6417adf701264/6101749de1c8822ca436f4a0_Link.svg" loading="lazy" width="24" height="24" alt="Icon of  a Link
 " class="icon_link"/><a href="https://www.capitolhillseattle.com/2020/10/seattle-marks-150-days-of-protest-with-march-from-capitol-hill/" target="_blank" class="link-11">CapitolhillSeattle.com : <em>Seattle&#x27;s Protest Timeline, as of the end of October (150 days)</em></a></li><li class="link-list"><img src="cdn.prod.website-files.com/5ad7793856a6417adf701264/6101749de1c8822ca436f4a0_Link.svg" loading="lazy" width="24" height="24" alt="Icon of  a Link
 " class="icon_link"/><a href="https://www.seattletimes.com/seattle-news/seattle-defends-protest-response-says-police-did-not-violate-court-order/" target="_blank" class="link-11">The Seattle Times: <em>Seattle defends protest response, says police did not violate court order</em></a></li><li class="link-list"><img src="cdn.prod.website-files.com/5ad7793856a6417adf701264/6101749de1c8822ca436f4a0_Link.svg" loading="lazy" width="24" height="24" alt="Icon of  a Link
-" class="icon_link"/><a href="https://www.nytimes.com/2021/09/30/us/police-killings-undercounted-study.html" target="_blank" class="link-11">The New York Times: <em>More Than Half of Police Killings Are Mislabeled, New Study Says</em></a></li></ul></div></div><script src="d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c850e6.js?site=5ad7793856a6417adf701264" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script><script src="cdn.prod.website-files.com/5ad7793856a6417adf701264/js/webflow.schunk.b8534fd20dd64675.js" type="text/javascript"></script><script src="cdn.prod.website-files.com/5ad7793856a6417adf701264/js/webflow.schunk.81e84d375e916845.js" type="text/javascript"></script><script src="cdn.prod.website-files.com/5ad7793856a6417adf701264/js/webflow.schunk.03344daf4b7c74e6.js" type="text/javascript"></script><script src="cdn.prod.website-files.com/5ad7793856a6417adf701264/js/webflow.schunk.d52a2ac917aba52f.js" type="text/javascript"></script><script src="cdn.prod.website-files.com/5ad7793856a6417adf701264/js/webflow.schunk.4aa2650f685bb281.js" type="text/javascript"></script><script src="cdn.prod.website-files.com/5ad7793856a6417adf701264/js/webflow.86de9783.02749bcce74a9368.js" type="text/javascript"></script></body>
+" class="icon_link"/><a href="https://www.nytimes.com/2021/09/30/us/police-killings-undercounted-study.html" target="_blank" class="link-11">The New York Times: <em>More Than Half of Police Killings Are Mislabeled, New Study Says</em></a></li></ul></div></div><script src="d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c850e6.js?site=5ad7793856a6417adf701264" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script><script src="cdn.prod.website-files.com/5ad7793856a6417adf701264/js/webflow.schunk.b8534fd20dd64675.js" type="text/javascript"></script><script src="cdn.prod.website-files.com/5ad7793856a6417adf701264/js/webflow.schunk.81e84d375e916845.js" type="text/javascript"></script><script src="cdn.prod.website-files.com/5ad7793856a6417adf701264/js/webflow.schunk.03344daf4b7c74e6.js" type="text/javascript"></script><script src="cdn.prod.website-files.com/5ad7793856a6417adf701264/js/webflow.schunk.d52a2ac917aba52f.js" type="text/javascript"></script><script src="cdn.prod.website-files.com/5ad7793856a6417adf701264/js/webflow.schunk.4aa2650f685bb281.js" type="text/javascript"></script><script src="cdn.prod.website-files.com/5ad7793856a6417adf701264/js/webflow.86de9783.02749bcce74a9368.js" type="text/javascript"></script>
+
+    <!-- Mobile detection and redirect script -->
+    <script>
+        (function() {
+            // Check if user is being forced to desktop version
+            var urlParams = new URLSearchParams(window.location.search);
+            var forceDesktop = urlParams.get('force') === 'desktop';
+            
+            // Check if user preference is stored
+            var userPreference = localStorage.getItem('siteVersion');
+            
+            // Only redirect if not forced to desktop and no desktop preference
+            if (!forceDesktop && userPreference !== 'desktop') {
+                // Check screen width
+                if (window.innerWidth < 800 || screen.width < 800) {
+                    // Store that we're redirecting to mobile
+                    localStorage.setItem('siteVersion', 'mobile');
+                    // Redirect to mobile version
+                    window.location.href = 'mobile/resources.html?mobile=true';
+                    return;
+                }
+            }
+            
+            // If we're here, user wants desktop version
+            if (forceDesktop) {
+                localStorage.setItem('siteVersion', 'desktop');
+            }
+        })();
+    </script>
+</body>
 <!-- Mirrored from spdviolence2020.webflow.io/resources by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 16 Nov 2025 20:50:30 GMT -->
 </html>

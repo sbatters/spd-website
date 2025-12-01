@@ -4371,6 +4371,7 @@ h5 {
   margin: auto 0 0;
   position: relative;
   inset: 0% 0% auto auto;
+  filter: brightness(0) saturate(100%) invert(1);
 }
 
 .container {

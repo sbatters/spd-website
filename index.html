@@ -74,6 +74,30 @@
             margin: 0 !important;
             padding: 0 !important;
         }
+        
+        /* Mobile switch button styles */
+        .mobile-switch {
+            background-color: #f1c84b !important;
+            color: #000 !important;
+            border-radius: 4px !important;
+            padding: 8px 12px !important;
+            margin-left: 10px !important;
+            font-size: 12px !important;
+            text-decoration: none !important;
+            transition: all 0.3s ease !important;
+        }
+        
+        .mobile-switch:hover {
+            background-color: #d4a941 !important;
+            transform: translateY(-2px) !important;
+        }
+        
+        /* Hide mobile switch on screens under 800px since they'll auto-redirect */
+        @media screen and (max-width: 800px) {
+            .mobile-switch {
+                display: none !important;
+            }
+        }
     </style>
     
     <!-- Font Preconnections -->
@@ -142,6 +166,7 @@
         <a href="resources.html" class="nav-link w-nav-link">RESOURCES</a>
         <a href="about.html" class="nav-link w-nav-link">ABOUT</a>
         <a href="contact.html" class="nav-link w-nav-link">CONTACT</a>
+        <a href="mobile/index.html?mobile=true" class="nav-link w-nav-link mobile-switch" style="background-color: #f1c84b; color: #000; border-radius: 4px; padding: 8px 12px; margin-left: 10px;">📱 MOBILE</a>
     </nav>
 
     <!-- Main content area -->
@@ -436,25 +461,25 @@
                     <a data-w-tab="Tab 1" class="tab-link w-inline-block w-tab-link w--current">
                         <div class="div-block-58">
                             <div class="text-block-16">Incendiary</div>
-                            <img src="icons/fire-regular.svg" loading="lazy" width="38" height="38" alt="Fire Icon" class="image-9" style="filter: brightness(0) invert(1); opacity: 1 !important;">
+                            <img src="icons/fire-regular.svg" loading="lazy" width="32" height="32" alt="Fire Icon" class="image-9" style="filter: brightness(0) invert(1); opacity: 1 !important;">
                         </div>
                     </a>
                     <a data-w-tab="Tab 2" class="tab-link w-inline-block w-tab-link">
                         <div class="div-block-58">
                             <div class="text-block-16">Chemical</div>
-                            <img src="icons/gas-regular.svg" loading="lazy" width="38" height="38" alt="Chemical Gas Icon" class="image-8" style="filter: brightness(0) invert(1); opacity: 1 !important;">
+                            <img src="icons/gas-regular.svg" loading="lazy" width="32" height="32" alt="Chemical Gas Icon" class="image-8" style="filter: brightness(0) invert(1); opacity: 1 !important;">
                         </div>
                     </a>
                     <a data-w-tab="Tab 3" class="tab-link w-inline-block w-tab-link">
                         <div class="div-block-58">
                             <div class="text-block-16">Projectile</div>
-                            <img src="icons/bullet-regular.svg" loading="lazy" width="24" height="24" alt="Projectile Icon" class="image-7" style="filter: brightness(0) invert(1); opacity: 1 !important;">
+                            <img src="icons/bullet-regular.svg" loading="lazy" width="32" height="32" alt="Projectile Icon" class="image-7" style="filter: brightness(0) invert(1); opacity: 1 !important;">
                         </div>
                     </a>
                     <a data-w-tab="Tab 4" class="tab-link w-inline-block w-tab-link">
                         <div class="div-block-58">
                             <div class="text-block-16">other</div>
-                            <img src="icons/flash-regular.svg" loading="lazy" width="28" height="40" alt="Flash Icon" class="image-19" style="filter: brightness(0) invert(1); opacity: 1 !important;">
+                            <img src="icons/flash-regular.svg" loading="lazy" width="32" height="32" alt="Flash Icon" class="image-19" style="filter: brightness(0) invert(1); opacity: 1 !important;">
                         </div>
                     </a>
                 </div>
@@ -624,6 +649,35 @@
     <script src="cdn.prod.website-files.com/5ad7793856a6417adf701264/js/webflow.schunk.4aa2650f685bb281.js" type="text/javascript"></script>
     <script src="cdn.prod.website-files.com/5ad7793856a6417adf701264/js/webflow.7f6b2dc0.bd3d3fa051feae45.js" type="text/javascript"></script>
     
+    <!-- Mobile detection and redirect script -->
+    <script>
+        (function() {
+            // Check if user is being forced to desktop version
+            var urlParams = new URLSearchParams(window.location.search);
+            var forceDesktop = urlParams.get('force') === 'desktop';
+            
+            // Check if user preference is stored
+            var userPreference = localStorage.getItem('siteVersion');
+            
+            // Only redirect if not forced to desktop and no desktop preference
+            if (!forceDesktop && userPreference !== 'desktop') {
+                // Check screen width
+                if (window.innerWidth < 800 || screen.width < 800) {
+                    // Store that we're redirecting to mobile
+                    localStorage.setItem('siteVersion', 'mobile');
+                    // Redirect to mobile version
+                    window.location.href = 'mobile/index.html?mobile=true';
+                    return;
+                }
+            }
+            
+            // If we're here, user wants desktop version
+            if (forceDesktop) {
+                localStorage.setItem('siteVersion', 'desktop');
+            }
+        })();
+    </script>
+
     <!-- Video popup control script -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
