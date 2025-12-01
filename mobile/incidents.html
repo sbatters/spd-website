@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>All Incidents - Mobile</title>
+    <meta name="description" content="Testimonials from protesters injured by the SPD during the summer of 2020.">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000;
+            color: #fff;
+            line-height: 1.6;
+        }
+        
+        .mobile-header {
+            background-color: #111;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid #f1c84b;
+        }
+        
+        .mobile-nav {
+            background-color: #222;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .mobile-nav a {
+            color: #f1c84b;
+            text-decoration: none;
+            padding: 8px 12px;
+            margin: 3px;
+            display: inline-block;
+            border: 1px solid #f1c84b;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+        
+        .mobile-nav a:hover,
+        .mobile-nav a.current {
+            background-color: #f1c84b;
+            color: #000;
+        }
+        
+        .mobile-main {
+            padding: 20px;
+        }
+        
+        .mobile-title {
+            color: #f1c84b;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .desktop-link {
+            text-align: center;
+            padding: 15px;
+            background-color: #222;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .desktop-link a {
+            color: #f1c84b;
+            text-decoration: none;
+        }
+        
+        .incident-card {
+            background-color: #111;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #f1c84b;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .incident-card:hover {
+            background-color: #222;
+        }
+        
+        .incident-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .incident-name {
+            color: #f1c84b;
+            font-weight: bold;
+            font-size: 16px;
+            flex: 1;
+        }
+        
+        .incident-date {
+            color: #888;
+            font-size: 12px;
+            white-space: nowrap;
+            margin-left: 10px;
+        }
+        
+        .incident-preview {
+            font-size: 14px;
+            line-height: 1.4;
+            color: #ccc;
+            margin-bottom: 10px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .incident-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        
+        .incident-tag {
+            background-color: #333;
+            color: #f1c84b;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            border: 1px solid #f1c84b;
+        }
+        
+        .read-more {
+            color: #f1c84b;
+            font-size: 12px;
+            margin-top: 10px;
+            text-decoration: underline;
+        }
+        
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #888;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #888;
+            background-color: #111;
+            border-radius: 8px;
+        }
+        
+        .search-box {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            background-color: #222;
+            border: 2px solid #f1c84b;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 16px;
+        }
+        
+        .search-box::placeholder {
+            color: #888;
+        }
+        
+        .search-box:focus {
+            outline: none;
+            background-color: #333;
+        }
+        
+        .results-count {
+            color: #888;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+        
+        .modal-content {
+            background-color: #111;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            border: 2px solid #f1c84b;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 15px;
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            color: #f1c84b;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        .modal-title {
+            color: #f1c84b;
+            font-size: 18px;
+            font-weight: bold;
+            flex: 1;
+            margin-right: 15px;
+        }
+        
+        .modal-body {
+            line-height: 1.6;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header class="mobile-header">
+        <h1 class="mobile-title">All Incidents</h1>
+    </header>
+    
+    <nav class="mobile-nav">
+        <a href="index.html">HOME</a>
+        <a href="incidents.html" class="current">INCIDENTS</a>
+        <a href="../resources.html">RESOURCES</a>
+        <a href="../about.html">ABOUT</a>
+        <a href="../contact.html">CONTACT</a>
+    </nav>
+    
+    <main class="mobile-main">
+        <div class="desktop-link">
+            <a href="../incidents.html?force=desktop">🖥️ Switch to Desktop Version</a>
+        </div>
+        
+        <input type="text" class="search-box" placeholder="Search incidents by name, date, or description..." id="searchInput">
+        
+        <div class="results-count" id="resultsCount"></div>
+        
+        <div id="incidentsList">
+            <div class="loading">Loading incidents...</div>
+        </div>
+    </main>
+    
+    <!-- Modal for full incident details -->
+    <div class="modal" id="incidentModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title" id="modalTitle"></div>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+    
+    <script>
+        // Sample incident data (in a real app, this would come from an API)
+        const incidents = [
+            {
+                id: 1,
+                name: "Anonymous Protester A",
+                date: "June 1, 2020",
+                preview: "I was peacefully protesting when officers began using tear gas and rubber bullets. The chemical exposure caused severe respiratory distress that lasted for days.",
+                fullText: "I was peacefully protesting when officers began using tear gas and rubber bullets. The chemical exposure caused severe respiratory distress that lasted for days. I had to seek medical attention at a local hospital where doctors confirmed chemical burns to my eyes and respiratory system. The experience was traumatic and has had lasting effects on my health and wellbeing.",
+                tags: ["Chemical Weapons", "Rubber Bullets", "Medical Treatment"]
+            },
+            {
+                id: 2,
+                name: "John D.",
+                date: "June 7, 2020",
+                preview: "Hit by a blast ball while standing with hands raised. The impact fractured my ribs and caused internal bleeding requiring emergency surgery.",
+                fullText: "Hit by a blast ball while standing with hands raised. The impact fractured my ribs and caused internal bleeding requiring emergency surgery. I was clearly not a threat, standing peacefully with my hands visible. The officer fired directly at me from close range, which is against their own protocols. I spent three days in the hospital and months in recovery.",
+                tags: ["Blast Balls", "Fractures", "Emergency Surgery", "Hospital Stay"]
+            },
+            {
+                id: 3,
+                name: "Sarah M.",
+                date: "June 12, 2020",
+                preview: "Officer pepper-sprayed me directly in the face from less than 6 feet away. I experienced severe burning and temporary blindness.",
+                fullText: "Officer pepper-sprayed me directly in the face from less than 6 feet away. I experienced severe burning and temporary blindness. The burning sensation was excruciating and lasted for hours despite repeated flushing with water and milk. I couldn't see properly for over an hour and had to be guided to safety by other protesters. The experience was terrifying and has left me with anxiety about attending public gatherings.",
+                tags: ["Pepper Spray", "Temporary Blindness", "Close Range", "Anxiety"]
+            },
+            {
+                id: 4,
+                name: "Marcus L.",
+                date: "July 25, 2020",
+                preview: "Police bike ran over my leg while I was on the ground. Officer showed no concern for my injury and refused to call medical assistance.",
+                fullText: "Police bike ran over my leg while I was on the ground. Officer showed no concern for my injury and refused to call medical assistance. I had fallen during the chaos and was trying to get up when the officer deliberately rode over my leg. The tire caused deep bruising and possible ligament damage. When I cried out in pain, the officer ignored me and continued pursuing other protesters. Other demonstrators had to help me get to a medic tent for treatment.",
+                tags: ["Physical Assault", "Bicycle", "Leg Injury", "Ignored Injury"]
+            },
+            {
+                id: 5,
+                name: "Jennifer K.",
+                date: "September 3, 2020",
+                preview: "8-year-old child pepper-sprayed by officer. I witnessed this horrific act of violence against a defenseless child who was with their family.",
+                fullText: "8-year-old child pepper-sprayed by officer. I witnessed this horrific act of violence against a defenseless child who was with their family. The family was trying to leave the area when officers began deploying chemical weapons indiscriminately. The child was crying and clearly in distress, but officers showed no mercy or consideration for their age. This traumatic event will stay with me forever and represents the worst of police brutality against innocent civilians.",
+                tags: ["Child Victim", "Pepper Spray", "Family", "Indiscriminate Use"]
+            },
+            {
+                id: 6,
+                name: "David R.",
+                date: "September 24, 2020",
+                preview: "Officer rolled bicycle over my neck while I was face down in the street. I thought I was going to die from the pressure on my throat.",
+                fullText: "Officer rolled bicycle over my neck while I was face down in the street. I thought I was going to die from the pressure on my throat. I had been tackled and was complying with orders when the officer decided to use his bike as a weapon against me. The wheel pressed down on my neck, cutting off my air supply. I genuinely believed I was going to suffocate. The officer only stopped when other protesters began filming and shouting. I suffered neck injuries that required physical therapy for months.",
+                tags: ["Bicycle Assault", "Neck Injury", "Suffocation", "Physical Therapy"]
+            }
+        ];
+        
+        let filteredIncidents = [...incidents];
+        
+        function renderIncidents() {
+            const container = document.getElementById('incidentsList');
+            const resultsCount = document.getElementById('resultsCount');
+            
+            if (filteredIncidents.length === 0) {
+                container.innerHTML = '<div class="no-results">No incidents found matching your search.</div>';
+                resultsCount.textContent = 'No results found';
+                return;
+            }
+            
+            resultsCount.textContent = `Showing ${filteredIncidents.length} of ${incidents.length} incidents`;
+            
+            container.innerHTML = filteredIncidents.map(incident => `
+                <div class="incident-card" onclick="openModal(${incident.id})">
+                    <div class="incident-header">
+                        <div class="incident-name">${incident.name}</div>
+                        <div class="incident-date">${incident.date}</div>
+                    </div>
+                    <div class="incident-preview">${incident.preview}</div>
+                    <div class="incident-tags">
+                        ${incident.tags.map(tag => `<span class="incident-tag">${tag}</span>`).join('')}
+                    </div>
+                    <div class="read-more">Tap to read full testimony</div>
+                </div>
+            `).join('');
+        }
+        
+        function filterIncidents() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            
+            filteredIncidents = incidents.filter(incident => 
+                incident.name.toLowerCase().includes(searchTerm) ||
+                incident.date.toLowerCase().includes(searchTerm) ||
+                incident.preview.toLowerCase().includes(searchTerm) ||
+                incident.fullText.toLowerCase().includes(searchTerm) ||
+                incident.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+            );
+            
+            renderIncidents();
+        }
+        
+        function openModal(incidentId) {
+            const incident = incidents.find(i => i.id === incidentId);
+            if (!incident) return;
+            
+            document.getElementById('modalTitle').textContent = `${incident.name} - ${incident.date}`;
+            document.getElementById('modalBody').innerHTML = `
+                <p style="margin-bottom: 20px;">${incident.fullText}</p>
+                <div style="margin-top: 20px;">
+                    <strong style="color: #f1c84b;">Related:</strong><br>
+                    <div style="margin-top: 10px;">
+                        ${incident.tags.map(tag => `<span class="incident-tag" style="margin: 2px;">${tag}</span>`).join('')}
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('incidentModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            document.getElementById('incidentModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Event listeners
+        document.getElementById('searchInput').addEventListener('input', filterIncidents);
+        
+        // Close modal when clicking outside
+        document.getElementById('incidentModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(renderIncidents, 500); // Simulate loading
+        });
+        
+        // Mobile redirect prevention
+        if (window.location.search.includes('mobile=true')) {
+            // User was redirected here, no action needed
+        }
+    </script>
+</body>
+</html>
