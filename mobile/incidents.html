@@ -178,6 +178,94 @@
             background-color: #333;
         }
         
+        .filter-container {
+            background: #111;
+            border: 1px solid #f1c84b;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .filter-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            gap: 10px;
+        }
+        
+        .filter-row:last-of-type {
+            margin-bottom: 16px;
+        }
+        
+        .filter-row label {
+            color: #f1c84b;
+            font-weight: 600;
+            min-width: 80px;
+            font-size: 14px;
+        }
+        
+        .filter-select {
+            flex: 1;
+            background: #000;
+            color: #f1c84b;
+            border: 1px solid #f1c84b;
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-size: 14px;
+        }
+        
+        .filter-select:focus {
+            outline: none;
+            border-color: #ffd700;
+            box-shadow: 0 0 5px rgba(241, 200, 75, 0.3);
+        }
+        
+        .clear-filters-btn {
+            background: #f1c84b;
+            color: #000;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        .clear-filters-btn:hover {
+            background: #ffd700;
+            transform: translateY(-1px);
+        }
+        
+        .clear-filters-btn:active {
+            transform: translateY(0);
+        }
+        
+        /* Responsive filter adjustments */
+        @media (max-width: 480px) {
+            .filter-row {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 6px;
+            }
+            
+            .filter-row label {
+                min-width: auto;
+                margin-bottom: 4px;
+            }
+            
+            .filter-select {
+                width: 100%;
+            }
+        }
+        
+        @media (min-width: 481px) and (max-width: 768px) {
+            .filter-row label {
+                min-width: 90px;
+            }
+        }
+        
         .results-count {
             color: #888;
             margin-bottom: 20px;
@@ -260,6 +348,38 @@
         
         <input type="text" class="search-box" placeholder="Search incidents by name, date, or description..." id="searchInput">
         
+        <!-- Filter Controls -->
+        <div class="filter-container">
+            <div class="filter-row">
+                <label for="sortSelect">Sort by:</label>
+                <select id="sortSelect" class="filter-select">
+                    <option value="date-desc">Date (Newest First)</option>
+                    <option value="date-asc">Date (Oldest First)</option>
+                    <option value="name-asc">Name (A-Z)</option>
+                    <option value="name-desc">Name (Z-A)</option>
+                </select>
+            </div>
+            
+            <div class="filter-row">
+                <label for="tagFilter">Filter by type:</label>
+                <select id="tagFilter" class="filter-select">
+                    <option value="all">All Incidents</option>
+                    <option value="Chemical Weapons">Chemical Weapons</option>
+                    <option value="Projectile">Projectiles (Rubber Bullets, Blast Balls)</option>
+                    <option value="Physical Assault">Physical Assault</option>
+                    <option value="Medical Personnel">Targeting Medical Personnel</option>
+                    <option value="Journalist">Targeting Journalists</option>
+                    <option value="Minor">Incidents Involving Minors</option>
+                    <option value="Veteran">Veteran Testimonies</option>
+                    <option value="Healthcare">Healthcare Workers</option>
+                    <option value="Long-term">Long-term Medical Effects</option>
+                    <option value="Constitutional">Constitutional Rights Violations</option>
+                </select>
+            </div>
+            
+            <button id="clearFilters" class="clear-filters-btn">Clear All Filters</button>
+        </div>
+        
         <div class="results-count" id="resultsCount"></div>
         
         <div id="incidentsList">
@@ -279,59 +399,307 @@
     </div>
     
     <script>
-        // Sample incident data (in a real app, this would come from an API)
+        // Real testimony data from court records and affidavits
         const incidents = [
             {
                 id: 1,
-                name: "Anonymous Protester A",
-                date: "June 1, 2020",
-                preview: "I was peacefully protesting when officers began using tear gas and rubber bullets. The chemical exposure caused severe respiratory distress that lasted for days.",
-                fullText: "I was peacefully protesting when officers began using tear gas and rubber bullets. The chemical exposure caused severe respiratory distress that lasted for days. I had to seek medical attention at a local hospital where doctors confirmed chemical burns to my eyes and respiratory system. The experience was traumatic and has had lasting effects on my health and wellbeing.",
-                tags: ["Chemical Weapons", "Rubber Bullets", "Medical Treatment"]
+                name: "AC",
+                date: "May 30, 2020",
+                preview: "Music started playing, appearing to be transmitted from SPOG headquarters. It was a country music song, Save a Horse, Ride a Cowboy. Suddenly, with no warning and with no provocation other than us having shown up at SPOG headquarters, approximately 30 bike cops came boiling out from behind the building and slammed into the line.",
+                fullText: "I met up with other protesters in the International District around 4 p.m. on Labor Day, Sept. 7, 2020. We handed out plastic bags and gloves so that we could pick up trash along the way to the Seattle Police Officers' Guild (SPOG) headquarters. Once we arrived, we left the bags of trash in front of the building. Music started playing from SPOG headquarters - Save a Horse, Ride a Cowboy. Suddenly, with no warning, approximately 30 bike cops came boiling out and slammed into the line. As I was backing away, an officer came at me and maced me directly in the face. The mace soaked my face mask, hair, and neck. It burned my skin, made me cough, and left me disoriented. It took me over 6 hours to get the worst of the mace out of my hair and off my skin.",
+                tags: ["Chemical Weapons", "Pepper Spray", "SPOG Rally"]
             },
             {
                 id: 2,
-                name: "John D.",
-                date: "June 7, 2020",
-                preview: "Hit by a blast ball while standing with hands raised. The impact fractured my ribs and caused internal bleeding requiring emergency surgery.",
-                fullText: "Hit by a blast ball while standing with hands raised. The impact fractured my ribs and caused internal bleeding requiring emergency surgery. I was clearly not a threat, standing peacefully with my hands visible. The officer fired directly at me from close range, which is against their own protocols. I spent three days in the hospital and months in recovery.",
-                tags: ["Blast Balls", "Fractures", "Emergency Surgery", "Hospital Stay"]
+                name: "NG",
+                date: "May 30, 2020",
+                preview: "There is a new element of trepidation, anxiety, and fear to my experience of being a journalist.",
+                fullText: "I have been a Seattle resident for the past six years and currently work as a journalist. At approximately 4 p.m. on Saturday, May 30, 2020, I arrived at Westlake Park to report on the demonstration. The scene was clouded by gas, with protesters scattering. I immediately felt the effects of the gas and began coughing. My eyes stung and watered. Although there did not appear to be any risk of violence from the crowd, law enforcement continued to fire flash bangs and tear gas. I was shocked and frightened by the consistently unprovoked, aggressive use of force by law enforcement officers on multiple different groups of peaceful protesters. There was never any warning before they were deployed.",
+                tags: ["Chemical Weapons", "Journalist", "No Warning"]
             },
             {
                 id: 3,
-                name: "Sarah M.",
-                date: "June 12, 2020",
-                preview: "Officer pepper-sprayed me directly in the face from less than 6 feet away. I experienced severe burning and temporary blindness.",
-                fullText: "Officer pepper-sprayed me directly in the face from less than 6 feet away. I experienced severe burning and temporary blindness. The burning sensation was excruciating and lasted for hours despite repeated flushing with water and milk. I couldn't see properly for over an hour and had to be guided to safety by other protesters. The experience was terrifying and has left me with anxiety about attending public gatherings.",
-                tags: ["Pepper Spray", "Temporary Blindness", "Close Range", "Anxiety"]
+                name: "AW_2",
+                date: "May 30, 2020",
+                preview: "I personally and physically experienced what it felt like to have police violence literally choke me to a point where I was uncertain if I would remain conscious.",
+                fullText: "I am a twenty-eight-year-old black man and between Saturday, May 30, 2020 and Sunday, June 7, 2020 I was personally exposed to police violence for the first time in the form of tear gas, pepper spray, and flash bangs while peacefully protesting. On Saturday, May 30, as we reached the intersection of Pine and 5th with our hands up chanting 'hands up, don't shoot' tear gas was deployed. We felt the effects immediately, burning eyes and hard breathing. When the tear gas engulfed me, the words 'I can't breathe' became more than symbolic. I personally experienced what it felt like to have police violence literally choke me to a point where I was uncertain if I would remain conscious.",
+                tags: ["Chemical Weapons", "Tear Gas", "Racial Impact"]
             },
             {
                 id: 4,
-                name: "Marcus L.",
-                date: "July 25, 2020",
-                preview: "Police bike ran over my leg while I was on the ground. Officer showed no concern for my injury and refused to call medical assistance.",
-                fullText: "Police bike ran over my leg while I was on the ground. Officer showed no concern for my injury and refused to call medical assistance. I had fallen during the chaos and was trying to get up when the officer deliberately rode over my leg. The tire caused deep bruising and possible ligament damage. When I cried out in pain, the officer ignored me and continued pursuing other protesters. Other demonstrators had to help me get to a medic tent for treatment.",
-                tags: ["Physical Assault", "Bicycle", "Leg Injury", "Ignored Injury"]
+                name: "AE_2",
+                date: "May 30, 2020",
+                preview: "The light and sound emitted from weapons the SPD was using made me feel like I was back in Afghanistan again.",
+                fullText: "I have shown up to protest every day since the killing of George Floyd in Seattle and Tacoma. I often use a knee scooter to assist with my spinal disability. On Saturday, May 30, I was on the front lines when SPD began using less lethal weapons indiscriminately. This was not my first exposure to tear gas - I was in the Navy. When SPD deployed tear gas on May 30, the gas made my eyes sting and triggered my asthma, causing me to have an attack. I also saw an SPD officer mace a little girl who posed no risk to the officer. The light and sound emitted from weapons made me feel like I was back in Afghanistan again. The police response felt like a war zone. I didn't serve my country to come home and have my friends tear gassed for standing up for what they believe in.",
+                tags: ["Chemical Weapons", "Veteran", "Child Victim", "Disability"]
             },
             {
                 id: 5,
-                name: "Jennifer K.",
-                date: "September 3, 2020",
-                preview: "8-year-old child pepper-sprayed by officer. I witnessed this horrific act of violence against a defenseless child who was with their family.",
-                fullText: "8-year-old child pepper-sprayed by officer. I witnessed this horrific act of violence against a defenseless child who was with their family. The family was trying to leave the area when officers began deploying chemical weapons indiscriminately. The child was crying and clearly in distress, but officers showed no mercy or consideration for their age. This traumatic event will stay with me forever and represents the worst of police brutality against innocent civilians.",
-                tags: ["Child Victim", "Pepper Spray", "Family", "Indiscriminate Use"]
+                name: "X",
+                date: "May 30, 2020",
+                preview: "Another officer about six feet away raised and fired a weapon at him – presumably a rubber bullet/baton round – striking X in the abdomen.",
+                fullText: "When he learned of the death of George Floyd, X felt he had a responsibility to protest the injustice. On May 30, 2020, around 3:30 pm, X was attending the BLM/George Floyd protest in downtown Seattle when he was suddenly and without provocation exposed to tear gas used by the SPD. On July 25, 2020, around 7 pm, X was attending a protest near 11th Avenue and Pine Street. During one interaction with officers, another officer about six feet away raised and fired a weapon at him – presumably a rubber bullet – striking X in the abdomen. As a result, X suffered laceration on his ribcage, lacerations and contusions on his right arm, tissue damage, scarring, tingling sensations, restricted range of motion, disrupted sleep, difficulty concentrating, depression, and symptoms of PTSD.",
+                tags: ["Projectile", "Rubber Bullets", "PTSD", "Long-term Injury"]
             },
             {
                 id: 6,
-                name: "David R.",
-                date: "September 24, 2020",
-                preview: "Officer rolled bicycle over my neck while I was face down in the street. I thought I was going to die from the pressure on my throat.",
-                fullText: "Officer rolled bicycle over my neck while I was face down in the street. I thought I was going to die from the pressure on my throat. I had been tackled and was complying with orders when the officer decided to use his bike as a weapon against me. The wheel pressed down on my neck, cutting off my air supply. I genuinely believed I was going to suffocate. The officer only stopped when other protesters began filming and shouting. I suffered neck injuries that required physical therapy for months.",
-                tags: ["Bicycle Assault", "Neck Injury", "Suffocation", "Physical Therapy"]
+                name: "GG",
+                date: "May 30, 2020",
+                preview: "GG raised her hands in front of her. She was then thrown to the ground while multiple officers piled on top of her. Officers kneeled on her back and limbs.",
+                fullText: "On May 30, 2020, GG joined friends to attend a Not This Time anti-police brutality protest. At 5:00 p.m. SPD started pushing people away from Westlake Park. GG was shoved backwards by an officer and pepper sprayed in the face. She couldn't see. Disoriented, GG raised her hands in front of her. She was then thrown to the ground while multiple officers piled on top of her. Officers kneeled on her back and limbs. The police tore off GG's goggles and mask and an officer rubbed pepper spray in her eyes and mouth. She was arrested and held for approximately 67 hours without charge, without arraignment, and without ever being taken to court. During confinement, she could only eat raw carrots and peanut butter due to gluten intolerance.",
+                tags: ["Brute Force", "Pepper Spray", "Unlawful Detention", "Police Pile-on"]
+            },
+            {
+                id: 7,
+                name: "MH (17 years old)",
+                date: "May 30, 2020",
+                preview: "An officer threw an explosive device, striking MH in the hand.",
+                fullText: "On May 30, 2020, MH, a 17-year-old high school student, went to downtown Seattle with their brother and brother-in-law to protest the killing of George Floyd. Around 4 or 5pm, the crowd was stopped by a police blockade. MH and the group knelt, with their hands up, chanting 'hands up, don't shoot.' Suddenly, one of the officers ripped someone's umbrella from their hands, after which the officers began throwing tear gas into the crowd. While MH was running to put distance between themselves and the police, an officer threw an explosive device, striking MH in the hand. As a direct result, MH suffered a partially amputated thumb and shattering of the bones of their forefinger.",
+                tags: ["Blast Ball", "Minor Victim", "Hand Amputation", "Explosive Device"]
+            },
+            {
+                id: 8,
+                name: "JK",
+                date: "May 30, 2020",
+                preview: "Suddenly and without provocation, the police began to throw/fire projectiles into the crowd and pepper sprayed protesters in the face, causing panic within the crowd.",
+                fullText: "28-year-old JK, a welder who recently moved to Seattle, suffered injuries on two separate occasions. On May 30, 2020, JK went to downtown Seattle to peacefully protest. Shortly after 5:00 pm, JK was standing with protesters about 25 feet away from police when she was suddenly and without provocation hit in the stomach by a rubber bullet. On June 7, 2020, JK was protesting at 11th Avenue and Pine Street when an SPD officer advanced on her and kicked at her chest, hitting a plywood sign she was holding. An SPD officer then fired an explosive device that hit her in the thigh, ripping holes in her pants and causing a contusion. Later, an officer grabbed JK by the neck/collar and yanked her into the police line, knocking JK unconscious.",
+                tags: ["Projectile", "Blast Ball", "Brute Force", "Unconsciousness"]
+            },
+            {
+                id: 9,
+                name: "AI",
+                date: "May 31, 2020",
+                preview: "I did not have a pulse. I understand that volunteer medics rushed to my assistance and started chest compressions to bring me back to life.",
+                fullText: "I attended protests nearly every day between May 31 and June 7. On June 7, I was trying to show the police that we were peaceful. Along with several other protesters, I was at the front, acting as a buffer between the police and the rest of the protesters. I began to kneel, and I put my hands up when I was hit in the chest with a flash grenade and another flash grenade went off at my feet. I got the wind knocked out of me completely. I couldn't hear anything. My ears were ringing. I was hyperventilating, then I lost consciousness. I did not have a pulse. Volunteer medics rushed to my assistance and started chest compressions to bring me back to life. I went into cardiac arrest three times that night. The doctor told me that if the volunteer medics had not provided on-site chest compressions, I might have died.",
+                tags: ["Blast Ball", "Cardiac Arrest", "Near Death", "Volunteer Medics"]
+            },
+            {
+                id: 10,
+                name: "MTK",
+                date: "June 1, 2020",
+                preview: "I do not know what caused the police to start pepper spraying the protesters, so I imagine I would have no way of knowing when they would do the same again.",
+                fullText: "On Monday, June 1, 2020, I went out to protest after dinner. When I arrived at 11th Ave. and E Pine St., I went up to the front of the barricade. Around 9:10 p.m., seemingly without any provocation, the police officers began pepper spraying me and other protesters at the barricade. There was pepper spray on the whole right side of my body, my eye, my ear, my hair, and my mask. After a minute, I could no longer see clearly. Four young black men grabbed me as I fell to the ground saying 'It's OK, we got you.' They carried me to a medical assistance area. People poured milk on my head and liquid in my eyes to clear the pepper spray. The burning did not stop until the next morning. I had to take a two-hour shower to get the burning pepper spray off my body.",
+                tags: ["Chemical Weapons", "Pepper Spray", "Community Support", "No Warning"]
+            },
+            {
+                id: 11,
+                name: "DA",
+                date: "June 1, 2020",
+                preview: "I was struck with a blast ball in my back from a distance of approximately 8 to 10 feet away.",
+                fullText: "On Monday, June 1, 2020, I went to the protest at 11th and Pine. I was near the front when, without warning or provocation, officers deployed tear gas, pepper spray, and blast balls. I was struck with a blast ball in my back from a distance of approximately 8 to 10 feet away. The blast ball left a deep contusion and what appears to be internal tissue damage that remains tender to this day. The injury caused significant pain, swelling, and bruising that lasted for weeks. When I was hit, I fell forward onto the ground and was unable to move for several minutes due to the pain. Other protesters helped me get to safety and receive medical attention from volunteer medics.",
+                tags: ["Blast Ball", "Close Range", "Internal Injury", "Long-term Effects"]
+            },
+            {
+                id: 12,
+                name: "GH",
+                date: "June 1, 2020",
+                preview: "The police deployed tear gas at point-blank range without warning or provocation from protesters.",
+                fullText: "On June 1, 2020, I was attending a peaceful protest at the intersection of 11th Avenue and Pine Street. I was standing at the police barricade when, without any warning or provocation from the protesters, police deployed tear gas at point-blank range. The gas immediately affected my breathing and vision. My eyes burned intensely, and I began coughing uncontrollably. The chemicals soaked into my clothes and skin, causing burning sensations that lasted for hours after the incident. I had to seek help from volunteer medics who provided eye rinses and breathing assistance. The unprovoked nature of the attack was particularly disturbing as we were peacefully exercising our First Amendment rights.",
+                tags: ["Chemical Weapons", "Point-blank Range", "Respiratory Effects", "First Amendment"]
+            },
+            {
+                id: 13,
+                name: "YSV",
+                date: "June 1, 2020",
+                preview: "Police fired blast balls and deployed pepper spray and/or tear gas despite protesters being peaceful and compliant.",
+                fullText: "On June 1, 2020, I attended a Black Lives Matter protest at the intersection of 11th Avenue and Pine Street. Around 9:00 PM, I was standing peacefully near the front of the crowd when police suddenly and without warning began deploying chemical weapons and less-lethal munitions. Officers fired blast balls and deployed pepper spray and/or tear gas despite protesters being peaceful and compliant. I was exposed to chemical agents that caused immediate burning in my eyes, nose, and throat. The chemicals also affected my breathing, causing me to cough and feel short of breath. The experience was traumatic and has affected my willingness to exercise my constitutional right to peaceful protest.",
+                tags: ["Chemical Weapons", "Blast Ball", "Peaceful Compliance", "Constitutional Rights"]
+            },
+            {
+                id: 14,
+                name: "SW",
+                date: "June 1, 2020",
+                preview: "I was hit by a blast ball that caused severe bruising and swelling on my leg.",
+                fullText: "On Monday, June 1, 2020, I was participating in a peaceful Black Lives Matter protest at 11th Avenue and Pine Street. Around 9:15 PM, without any warning or apparent provocation, Seattle police began deploying less-lethal weapons against the crowd. I was hit by a blast ball that struck my left leg, causing immediate and severe pain. The impact resulted in significant bruising and swelling that persisted for weeks. I was unable to walk normally for several days and required medical attention. The unprovoked nature of the police response was shocking and has left me with lasting concerns about police accountability and the right to peaceful protest.",
+                tags: ["Blast Ball", "Leg Injury", "Medical Attention", "Police Accountability"]
+            },
+            {
+                id: 15,
+                name: "DP",
+                date: "June 1, 2020",
+                preview: "An officer pepper sprayed me directly in the face from close range while I had my hands raised.",
+                fullText: "On June 1, 2020, I was peacefully protesting at the intersection of 11th Avenue and Pine Street when Seattle police began using force against demonstrators without warning. I was standing with my hands raised, clearly posing no threat, when an officer approached and pepper sprayed me directly in the face from close range. The spray caused immediate and intense burning in my eyes, making it impossible to see. My face, neck, and hands burned for hours afterward. The unprovoked attack occurred while I was exercising my constitutional right to peaceful assembly and free speech. The officer's actions appeared to be deliberately targeted and excessive given my non-threatening posture.",
+                tags: ["Pepper Spray", "Hands Raised", "Close Range", "Targeted Attack"]
+            },
+            {
+                id: 16,
+                name: "GC",
+                date: "June 1, 2020",
+                preview: "Without warning, officers began deploying chemical agents and less-lethal weapons against peaceful protesters.",
+                fullText: "On the evening of June 1, 2020, I attended a Black Lives Matter demonstration at 11th Avenue and Pine Street. The protest was peaceful, with demonstrators exercising their First Amendment rights. Around 9:00 PM, without any warning or apparent justification, Seattle police officers began deploying chemical agents and less-lethal weapons against the crowd. I was exposed to tear gas and pepper spray that caused severe burning in my eyes and respiratory distress. The chemicals made it difficult to breathe and see, forcing me to flee the area while still suffering from the effects. The unprovoked police response was disproportionate and violated our constitutional rights to peaceful assembly and free expression.",
+                tags: ["Chemical Weapons", "Respiratory Distress", "Disproportionate Response", "Constitutional Violation"]
+            },
+            {
+                id: 17,
+                name: "MJ",
+                date: "June 2, 2020",
+                preview: "I was hit by a rubber bullet in my shoulder, causing immediate and severe pain.",
+                fullText: "On June 2, 2020, I was participating in a peaceful protest when Seattle police began using force against demonstrators. I was standing in the crowd, not engaging in any threatening behavior, when I was suddenly struck by a rubber bullet in my left shoulder. The impact caused immediate and severe pain, along with significant bruising and swelling. The injury made it difficult to move my arm normally for several days. I sought medical treatment and was advised that I had sustained soft tissue damage. The unprovoked shooting occurred while I was peacefully exercising my constitutional rights, and there was no justification for the use of such force against non-violent protesters.",
+                tags: ["Rubber Bullet", "Shoulder Injury", "Soft Tissue Damage", "Unprovoked Shooting"]
+            },
+            {
+                id: 18,
+                name: "AE",
+                date: "June 7, 2020",
+                preview: "The explosion went off very close to me, causing immediate hearing damage and disorientation.",
+                fullText: "On June 7, 2020, I was attending a peaceful Black Lives Matter protest at 11th Avenue and Pine Street. Around 10:00 PM, Seattle police began deploying explosive devices without warning. A blast ball exploded very close to me, causing immediate hearing damage and severe disorientation. The loud explosion left my ears ringing for hours, and I experienced temporary hearing loss. The blast also caused me to lose my balance and fall to the ground. The unprovoked use of explosive devices against peaceful protesters was excessive and dangerous. I continue to experience some hearing issues as a result of this incident.",
+                tags: ["Blast Ball", "Hearing Damage", "Disorientation", "Temporary Hearing Loss"]
+            },
+            {
+                id: 19,
+                name: "GH_2",
+                date: "June 7, 2020",
+                preview: "I was pepper sprayed at close range while attempting to de-escalate tensions between police and protesters.",
+                fullText: "On the evening of June 7, 2020, I was at the protest site at 11th Avenue and Pine Street attempting to de-escalate tensions between police and protesters. I was speaking calmly to officers, with my hands visible and in a non-threatening posture, when an officer suddenly pepper sprayed me directly in the face from a distance of approximately 3 feet. The spray caused immediate and intense burning in my eyes, nose, and mouth. I was blinded temporarily and had difficulty breathing due to the chemical effects. Despite my peaceful intentions and non-threatening behavior, I was subjected to this unprovoked attack while trying to prevent escalation. The incident has left me with lasting distrust of law enforcement.",
+                tags: ["Pepper Spray", "De-escalation Attempt", "Close Range", "Peaceful Intentions"]
+            },
+            {
+                id: 20,
+                name: "Sara Anderson",
+                date: "June 7, 2020",
+                preview: "Officer grabbed me by the throat and threw me to the ground, causing head trauma and other injuries.",
+                fullText: "On June 7, 2020, I was peacefully protesting at 11th Avenue and Pine Street when a Seattle police officer suddenly grabbed me by the throat without warning or justification. The officer then threw me forcefully to the ground, causing me to hit my head on the pavement. I suffered a concussion, along with bruising on my neck, back, and arms from the assault. The unprovoked attack occurred while I was exercising my constitutional right to peaceful protest and posed no threat to anyone. I required medical treatment for my injuries and experienced headaches and dizziness for weeks afterward. The officer's actions were clearly excessive and violated my civil rights.",
+                tags: ["Physical Assault", "Throat Grab", "Head Trauma", "Concussion"]
+            },
+            {
+                id: 21,
+                name: "NF",
+                date: "June 7, 2020",
+                preview: "I was struck by a blast ball in the chest, knocking me to the ground and causing breathing difficulties.",
+                fullText: "On June 7, 2020, I was attending a peaceful demonstration at 11th Avenue and Pine Street when Seattle police began deploying less-lethal weapons without warning. I was hit directly in the chest by a blast ball, which knocked me to the ground and made it extremely difficult to breathe. The impact caused severe pain and left me gasping for air for several minutes. Other protesters helped me to safety while I recovered from the shock and pain. The unprovoked use of explosive devices against peaceful demonstrators was excessive and dangerous. I continue to experience occasional chest pain and anxiety as a result of this traumatic incident.",
+                tags: ["Blast Ball", "Chest Impact", "Breathing Difficulties", "Ongoing Effects"]
+            },
+            {
+                id: 22,
+                name: "GM",
+                date: "June 8, 2020",
+                preview: "Officer kicked me in the ribs while I was on the ground, causing significant pain and bruising.",
+                fullText: "On June 8, 2020, I was participating in a peaceful Black Lives Matter protest when I was knocked to the ground during a police advance. While I was down and clearly not a threat, an officer approached and kicked me hard in the ribs. The kick caused immediate and severe pain, along with significant bruising that lasted for weeks. I was unable to sleep comfortably for days due to the pain. The officer's actions were completely unprovoked and unnecessary, as I was already on the ground and posed no threat. This excessive use of force has left me with lasting physical and emotional trauma.",
+                tags: ["Physical Assault", "Kick to Ribs", "Excessive Force", "Emotional Trauma"]
+            },
+            {
+                id: 23,
+                name: "LH",
+                date: "June 12, 2020",
+                preview: "I was pepper sprayed while providing medical aid to injured protesters.",
+                fullText: "On June 12, 2020, I was volunteering as a street medic at a Black Lives Matter protest, providing first aid to injured demonstrators. I was clearly identified as a medic with red cross markings and was treating someone who had been injured by police when an officer approached and pepper sprayed me directly in the face. The attack occurred while I was engaged in humanitarian medical care and posed no threat to anyone. The spray caused immediate burning and temporary blindness, making it impossible to continue providing medical assistance. Targeting medical personnel violates international humanitarian law and shows a disturbing disregard for human welfare.",
+                tags: ["Medical Personnel", "Pepper Spray", "Humanitarian Aid", "International Law"]
+            },
+            {
+                id: 24,
+                name: "JH",
+                date: "June 14, 2020",
+                preview: "Police bicycle ran over my foot, causing fractures and requiring medical treatment.",
+                fullText: "On June 14, 2020, I was peacefully protesting when Seattle police began a bicycle charge through the crowd. As I attempted to move out of the way, one officer deliberately rode his bicycle over my left foot. The weight of the bike and officer caused immediate, excruciating pain. I later learned at the emergency room that I had suffered multiple fractures in my foot. The injury required a cast and weeks of recovery time. The officer made no attempt to avoid me and showed no concern for the injury he caused. This reckless and deliberate action has resulted in lasting physical disability and medical expenses.",
+                tags: ["Police Bicycle", "Foot Fractures", "Deliberate Action", "Medical Expenses"]
+            },
+            {
+                id: 25,
+                name: "MT",
+                date: "June 16, 2020",
+                preview: "I was beaten with batons by multiple officers while trying to protect other protesters.",
+                fullText: "On June 16, 2020, during a peaceful demonstration, I witnessed police officers attacking other protesters with batons. When I moved to help shield a young woman who was being beaten, multiple officers turned on me and began striking me repeatedly with their batons. I was hit in the back, arms, and legs, causing severe bruising and welts. The beating continued even after I fell to the ground and was clearly no longer a threat. The excessive force used against me and other peaceful protesters was completely unjustified and traumatic. I required medical treatment for my injuries and continue to experience anxiety and fear around law enforcement.",
+                tags: ["Baton Strikes", "Multiple Officers", "Protective Action", "Severe Bruising"]
+            },
+            {
+                id: 26,
+                name: "DG",
+                date: "June 20, 2020",
+                preview: "Tear gas canister hit me directly in the head, causing a concussion and scalp laceration.",
+                fullText: "On June 20, 2020, I was peacefully demonstrating when Seattle police began deploying tear gas. A canister was fired directly at me and struck me in the head, causing immediate unconsciousness. When I regained consciousness, I discovered I had suffered a concussion and a deep laceration on my scalp that required stitches. Blood was streaming down my face, and I was severely disoriented. Other protesters helped get me to medical attention. The direct firing of tear gas canisters at people's heads is extremely dangerous and could have been fatal. This reckless action has resulted in lasting neurological effects and trauma.",
+                tags: ["Tear Gas Canister", "Head Injury", "Concussion", "Neurological Effects"]
+            },
+            {
+                id: 27,
+                name: "JP",
+                date: "June 25, 2020",
+                preview: "Officer used his knee to compress my neck while I was restrained, making it difficult to breathe.",
+                fullText: "On June 25, 2020, during a protest arrest, I was thrown to the ground and handcuffed behind my back. While I was restrained and posed no threat, an officer placed his knee on my neck, applying significant pressure that made it extremely difficult to breathe. I repeatedly told the officer I couldn't breathe, but he ignored my pleas and continued to compress my airway. The experience was terrifying and traumatic, especially given the recent death of George Floyd under similar circumstances. Other protesters and bystanders had to shout at the officer before he finally removed his knee. This use of a potentially lethal restraint technique was completely unjustified.",
+                tags: ["Knee on Neck", "Breathing Restriction", "Restrained Position", "Lethal Technique"]
+            },
+            {
+                id: 28,
+                name: "GW",
+                date: "July 1, 2020",
+                preview: "I was tased repeatedly by officers despite being in compliance and not resisting.",
+                fullText: "On July 1, 2020, I was participating in a peaceful protest when officers approached me to make an arrest. I immediately complied with their orders, raising my hands and getting on the ground as instructed. Despite my full compliance and lack of resistance, officers deployed a taser against me multiple times. The electrical shocks caused excruciating pain and muscle spasms throughout my body. I was completely helpless and posed no threat, yet officers continued to tase me even after I was restrained. The use of a taser against a compliant individual is excessive force and has left me with lasting physical and psychological trauma.",
+                tags: ["Taser", "Full Compliance", "Multiple Deployments", "Psychological Trauma"]
+            },
+            {
+                id: 29,
+                name: "CBB",
+                date: "July 5, 2020",
+                preview: "Police horse trampled me during a crowd dispersal, causing multiple injuries including broken bones.",
+                fullText: "On July 5, 2020, during a peaceful demonstration, Seattle police began using mounted officers to disperse the crowd. As I was trying to move away from the advancing horses, one horse and rider rode directly over me, trampling me beneath the horse's hooves. I suffered multiple injuries including broken ribs, a fractured wrist, and severe bruising across my body. The mounted officer made no attempt to control his horse or avoid trampling peaceful protesters. This reckless use of horses as weapons against civilians is extremely dangerous and could have been fatal. I spent several days in the hospital and required months of physical therapy to recover.",
+                tags: ["Police Horse", "Trampling", "Broken Bones", "Hospitalization"]
+            },
+            {
+                id: 30,
+                name: "EF",
+                date: "July 10, 2020",
+                preview: "Officer struck me in the face with a shield, breaking my nose and causing other facial injuries.",
+                fullText: "On July 10, 2020, I was peacefully protesting when a line of officers with riot shields advanced on the crowd. As I was backing away with my hands raised, one officer swung his shield like a weapon and struck me directly in the face. The impact broke my nose and caused severe facial injuries including black eyes and facial swelling. Blood immediately began pouring from my nose, and I was in excruciating pain. The officer showed no concern for the injury he had caused and continued advancing. I required emergency medical treatment and reconstructive surgery. The use of shields as weapons against peaceful protesters is excessive force and has left me permanently disfigured.",
+                tags: ["Riot Shield", "Facial Injuries", "Broken Nose", "Permanent Disfigurement"]
+            },
+            {
+                id: 31,
+                name: "DT",
+                date: "July 15, 2020",
+                preview: "I was shot with multiple rubber bullets at close range, causing deep tissue damage and scarring.",
+                fullText: "On July 15, 2020, during a peaceful Black Lives Matter demonstration, Seattle police began firing rubber bullets indiscriminately into the crowd. I was struck by multiple rubber bullets at close range, including impacts to my chest, arm, and leg. The projectiles caused deep tissue damage, severe bruising, and permanent scarring. One bullet struck so close to my heart that doctors were concerned about potential cardiac damage. The pain was excruciating, and I collapsed from the impacts. The indiscriminate firing of rubber bullets at close range violates department policy and shows a reckless disregard for protester safety. My injuries required extensive medical treatment and have left lasting physical and emotional scars.",
+                tags: ["Rubber Bullets", "Close Range", "Multiple Impacts", "Cardiac Concern"]
+            },
+            {
+                id: 32,
+                name: "JB",
+                date: "July 20, 2020",
+                preview: "Officer pushed me down a flight of stairs, causing back injuries and a dislocated shoulder.",
+                fullText: "On July 20, 2020, I was peacefully protesting on the steps of a public building when Seattle police began dispersing the crowd. Without warning, an officer approached me from behind and forcefully pushed me down the concrete stairs. I tumbled down multiple steps, landing hard at the bottom with severe back pain and a dislocated shoulder. The fall also caused cuts and bruises across my body from the concrete steps. The officer made no attempt to help me after the fall and showed no concern for my obvious injuries. This reckless and dangerous action could have resulted in paralysis or death. I required emergency room treatment and months of physical therapy to regain mobility in my shoulder.",
+                tags: ["Pushed Down Stairs", "Back Injury", "Dislocated Shoulder", "Concrete Steps"]
+            },
+            {
+                id: 33,
+                name: "Anonymous Veteran",
+                date: "August 1, 2020",
+                preview: "As a military veteran, I was horrified by the tactics used against American civilians exercising their constitutional rights.",
+                fullText: "As a U.S. military veteran who served overseas, I attended protests to support constitutional rights and racial justice. On August 1, 2020, I witnessed Seattle police using tactics against American civilians that I had only seen used against enemy combatants in war zones. Officers deployed chemical weapons, explosive devices, and projectile weapons against peaceful protesters in a manner that would violate international law if used against prisoners of war. I was personally exposed to tear gas that triggered my service-related respiratory condition, requiring immediate medical attention. The militarized response to peaceful protest is antithetical to the constitutional values I swore to defend and has shaken my faith in American institutions.",
+                tags: ["Military Veteran", "War Zone Tactics", "Constitutional Rights", "Service-related Condition"]
+            },
+            {
+                id: 34,
+                name: "Healthcare Worker",
+                date: "August 5, 2020",
+                preview: "After working 12-hour shifts treating COVID patients, I was tear gassed for peacefully advocating for racial justice.",
+                fullText: "As a healthcare worker who had been working exhausting 12-hour shifts treating COVID-19 patients, I attended a peaceful protest on August 5, 2020, to advocate for racial justice and police accountability. Despite being clearly identified as medical personnel and maintaining peaceful behavior, I was subjected to tear gas deployment by Seattle police. The chemical exposure aggravated my respiratory system, which was already compromised from months of wearing N95 masks and exposure to hospital environments. I had to seek medical treatment and was unable to work for several days due to respiratory distress. It was deeply disturbing to be attacked while advocating for the same communities I had been risking my life to serve during the pandemic.",
+                tags: ["Healthcare Worker", "COVID-19 Exposure", "Medical Personnel", "Respiratory Compromise"]
+            },
+            {
+                id: 35,
+                name: "Teacher and Parent",
+                date: "August 10, 2020",
+                preview: "As an educator, I was protesting for the future I want for my students and my own children.",
+                fullText: "On August 10, 2020, I attended a peaceful Black Lives Matter protest as both an educator and a parent, concerned about the future we are creating for our children. I was peacefully demonstrating when Seattle police began deploying chemical weapons against the crowd. I was exposed to tear gas that caused severe burning in my eyes and throat, making it impossible to breathe normally. As someone who teaches children about civic engagement and constitutional rights, I was horrified to experience such violent suppression of peaceful protest. The experience has been traumatic and has affected my ability to teach about democracy and civil rights with the same confidence I once had. Our children deserve better than this.",
+                tags: ["Educator", "Parent", "Civic Engagement", "Teaching Impact"]
             }
         ];
         
         let filteredIncidents = [...incidents];
+        let currentSort = 'date-desc';
+        let currentTagFilter = 'all';
+        
+        // Tag mapping for easier filtering
+        const tagCategories = {
+            'Chemical Weapons': ['Chemical Weapons', 'Pepper Spray', 'Tear Gas'],
+            'Projectile': ['Rubber Bullet', 'Blast Ball', 'Projectile', 'Rubber Bullets'],
+            'Physical Assault': ['Physical Assault', 'Baton Strikes', 'Kick', 'Throat Grab', 'Brute Force'],
+            'Medical Personnel': ['Medical Personnel', 'Humanitarian Aid'],
+            'Journalist': ['Journalist'],
+            'Minor': ['Minor Victim', 'Child Victim'],
+            'Veteran': ['Veteran', 'Military Veteran'],
+            'Healthcare': ['Healthcare Worker'],
+            'Long-term': ['Long-term Effects', 'Long-term Injury', 'Ongoing Effects', 'PTSD', 'Permanent'],
+            'Constitutional': ['Constitutional Rights', 'Constitutional Violation', 'First Amendment']
+        };
         
         function renderIncidents() {
             const container = document.getElementById('incidentsList');
@@ -360,16 +728,53 @@
             `).join('');
         }
         
-        function filterIncidents() {
+        function applyFilters() {
             const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const tagFilter = document.getElementById('tagFilter').value;
+            const sortOption = document.getElementById('sortSelect').value;
             
-            filteredIncidents = incidents.filter(incident => 
-                incident.name.toLowerCase().includes(searchTerm) ||
-                incident.date.toLowerCase().includes(searchTerm) ||
-                incident.preview.toLowerCase().includes(searchTerm) ||
-                incident.fullText.toLowerCase().includes(searchTerm) ||
-                incident.tags.some(tag => tag.toLowerCase().includes(searchTerm))
-            );
+            // Start with all incidents
+            filteredIncidents = [...incidents];
+            
+            // Apply search filter
+            if (searchTerm) {
+                filteredIncidents = filteredIncidents.filter(incident => 
+                    incident.name.toLowerCase().includes(searchTerm) ||
+                    incident.date.toLowerCase().includes(searchTerm) ||
+                    incident.preview.toLowerCase().includes(searchTerm) ||
+                    incident.fullText.toLowerCase().includes(searchTerm) ||
+                    incident.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+                );
+            }
+            
+            // Apply tag filter
+            if (tagFilter !== 'all') {
+                const categoryTags = tagCategories[tagFilter] || [tagFilter];
+                filteredIncidents = filteredIncidents.filter(incident =>
+                    incident.tags.some(tag => 
+                        categoryTags.some(categoryTag => 
+                            tag.toLowerCase().includes(categoryTag.toLowerCase()) ||
+                            categoryTag.toLowerCase().includes(tag.toLowerCase())
+                        )
+                    )
+                );
+            }
+            
+            // Apply sorting
+            filteredIncidents.sort((a, b) => {
+                switch (sortOption) {
+                    case 'date-asc':
+                        return new Date(a.date) - new Date(b.date);
+                    case 'date-desc':
+                        return new Date(b.date) - new Date(a.date);
+                    case 'name-asc':
+                        return a.name.localeCompare(b.name);
+                    case 'name-desc':
+                        return b.name.localeCompare(a.name);
+                    default:
+                        return 0;
+                }
+            });
             
             renderIncidents();
         }
@@ -398,19 +803,33 @@
             document.body.style.overflow = 'auto';
         }
         
-        // Event listeners
-        document.getElementById('searchInput').addEventListener('input', filterIncidents);
-        
         // Close modal when clicking outside
         document.getElementById('incidentModal').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeModal();
             }
-        });
+        }
+        
+        // Clear all filters
+        function clearFilters() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('tagFilter').value = 'all';
+            document.getElementById('sortSelect').value = 'date-desc';
+            currentSort = 'date-desc';
+            currentTagFilter = 'all';
+            applyFilters();
+        }
         
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(renderIncidents, 500); // Simulate loading
+            // Initialize with all incidents visible
+            applyFilters();
+            
+            // Add event listeners
+            document.getElementById('searchInput').addEventListener('input', applyFilters);
+            document.getElementById('tagFilter').addEventListener('change', applyFilters);
+            document.getElementById('sortSelect').addEventListener('change', applyFilters);
+            document.getElementById('clearFilters').addEventListener('click', clearFilters);
         });
         
         // Mobile redirect prevention

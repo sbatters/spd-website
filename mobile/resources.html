@@ -2,77 +2,96 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Police Violence : Resources</title>
-    <meta name="description" content="Resources for understanding police violence and public health">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Police Violence : Resources - Mobile</title>
+    <meta name="description" content="Resources for understanding police violence and public health">
     
-    <!-- CSS -->
+    <!-- Mobile-optimized CSS -->
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Arial', sans-serif;
+            background-color: #000;
+            color: #fff;
             line-height: 1.6;
-            color: #333;
-            background-color: #fff;
         }
-
+        
         .mobile-header {
-            background: #2c3e50;
-            color: white;
-            padding: 1rem;
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            background-color: #111;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid #f1c84b;
         }
-
+        
         .mobile-nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        .mobile-nav a {
-            color: white;
-            text-decoration: none;
-            padding: 0.5rem;
-            font-size: 0.9rem;
-        }
-
-        .mobile-nav .desktop-switch {
-            background: rgba(255,255,255,0.2);
-            border-radius: 4px;
-            padding: 0.4rem 0.8rem;
-            font-size: 0.8rem;
-        }
-
-        .page-title {
-            font-size: 1.5rem;
-            font-weight: bold;
+            background-color: #222;
+            padding: 15px;
             text-align: center;
         }
-
-        .content {
-            padding: 1rem;
+        
+        .mobile-nav a {
+            color: #f1c84b;
+            text-decoration: none;
+            padding: 10px 15px;
+            margin: 5px;
+            display: inline-block;
+            border: 1px solid #f1c84b;
+            border-radius: 5px;
+            font-size: 14px;
         }
-
-        .video-section {
-            margin-bottom: 2rem;
+        
+        .mobile-nav a:hover {
+            background-color: #f1c84b;
+            color: #000;
         }
-
+        
+        .mobile-title {
+            color: #f1c84b;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .mobile-main {
+            padding: 20px;
+        }
+        
+        .desktop-link {
+            text-align: center;
+            padding: 20px;
+            background-color: #222;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .desktop-link a {
+            color: #f1c84b;
+            text-decoration: none;
+        }
+        
+        .mobile-content {
+            background-color: #111;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #f1c84b;
+        }
+        
         .video-container {
             position: relative;
             width: 100%;
             height: 0;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            margin-bottom: 1rem;
+            padding-bottom: 56.25%;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
         }
-
+        
         .video-container iframe {
             position: absolute;
             top: 0;
@@ -81,126 +100,95 @@
             height: 100%;
             border: none;
         }
-
-        .section {
-            margin-bottom: 2rem;
-        }
-
-        .section-header {
-            background: #34495e;
-            color: white;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            border-radius: 4px;
-            font-size: 1.2rem;
+        
+        .section-title {
+            color: #f1c84b;
+            font-size: 22px;
             font-weight: bold;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-
+        
         .resource-list {
             list-style: none;
         }
-
+        
         .resource-item {
-            padding: 0.75rem;
-            margin-bottom: 0.5rem;
-            background: #f8f9fa;
-            border-radius: 4px;
-            border-left: 3px solid #3498db;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #222;
+            border-radius: 5px;
+            border-left: 4px solid #f1c84b;
         }
-
+        
         .resource-item a {
-            color: #2980b9;
+            color: #f1c84b;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: bold;
+            font-size: 15px;
         }
-
+        
         .resource-item a:hover {
             text-decoration: underline;
         }
-
+        
         .resource-description {
-            margin-top: 0.5rem;
-            font-size: 0.9rem;
-            color: #666;
+            margin-top: 10px;
+            font-size: 14px;
+            color: #ccc;
         }
-
+        
         .org-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-            padding: 1rem;
-            background: #ecf0f1;
-            border-radius: 4px;
+            background: #222;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #f1c84b;
         }
-
-        .org-logo {
-            width: 40px;
-            height: 40px;
-            margin-right: 1rem;
-            flex-shrink: 0;
-        }
-
+        
         .org-name {
-            font-size: 1.1rem;
+            color: #f1c84b;
+            font-size: 18px;
             font-weight: bold;
-            color: #2c3e50;
         }
-
-        .notable-links {
-            margin-bottom: 2rem;
-        }
-
+        
         .back-to-top {
             text-align: center;
-            padding: 1rem;
+            padding: 20px;
         }
-
+        
         .back-to-top a {
-            background: #3498db;
-            color: white;
-            padding: 0.75rem 1.5rem;
+            background: #f1c84b;
+            color: #000;
+            padding: 15px 30px;
             text-decoration: none;
-            border-radius: 4px;
+            border-radius: 5px;
             font-weight: bold;
-        }
-
-        @media (max-width: 480px) {
-            .mobile-nav {
-                flex-wrap: wrap;
-                gap: 0.25rem;
-            }
-
-            .mobile-nav a {
-                padding: 0.25rem 0.5rem;
-                font-size: 0.8rem;
-            }
-
-            .page-title {
-                font-size: 1.3rem;
-            }
-
-            .content {
-                padding: 0.75rem;
-            }
         }
     </style>
 </head>
 <body>
     <header class="mobile-header">
-        <nav class="mobile-nav">
-            <a href="../index.html?force=mobile">HOME</a>
-            <a href="incidents.html">INCIDENTS</a>
-            <a href="resources.html">RESOURCES</a>
-            <a href="about.html">ABOUT</a>
-            <a href="contact.html">CONTACT</a>
-            <a href="../resources.html?force=desktop" class="desktop-switch">Desktop</a>
-        </nav>
-        <h1 class="page-title">Resources</h1>
+        <h1 class="mobile-title">Resources</h1>
     </header>
+    
+    <nav class="mobile-nav">
+        <a href="index.html">HOME</a>
+        <a href="incidents.html">INCIDENTS</a>
+        <a href="resources.html">RESOURCES</a>
+        <a href="about.html">ABOUT</a>
+        <a href="contact.html">CONTACT</a>
+    </nav>
 
-    <main class="content">
+    
+    <main class="mobile-main">
+        <div class="desktop-link">
+            <a href="../resources.html?force=desktop">🖥️ Switch to Desktop Version</a>
+        </div>
+        
         <!-- Video Section -->
-        <section class="video-section">
+        <div class="mobile-content">
             <div class="video-container">
                 <iframe 
                     src="https://www.youtube.com/embed/hW-CPYwry-U?rel=0&controls=1&autoplay=0&mute=0&start=0" 
@@ -209,11 +197,11 @@
                     title="Police Violence as a Public Health Threat">
                 </iframe>
             </div>
-        </section>
+        </div>
 
         <!-- Notable Links -->
-        <section class="notable-links">
-            <div class="section-header">Notable Links</div>
+        <div class="mobile-content">
+            <div class="section-title">Notable Links</div>
             <ul class="resource-list">
                 <li class="resource-item">
                     <a href="https://twitter.com/JuniperLSimonis" target="_blank">
@@ -231,11 +219,11 @@
                     </a>
                 </li>
             </ul>
-        </section>
+        </div>
 
         <!-- Academic Papers -->
-        <section class="section">
-            <div class="section-header">Academic Papers</div>
+        <div class="mobile-content">
+            <div class="section-title">Academic Papers</div>
             <ul class="resource-list">
                 <li class="resource-item">
                     <a href="https://bmcpublichealth.biomedcentral.com/articles/10.1186/s12889-021-10859-w" target="_blank">
@@ -254,11 +242,11 @@
                     </a>
                 </li>
             </ul>
-        </section>
+        </div>
 
         <!-- Organizations -->
-        <section class="section">
-            <div class="section-header">Organizations</div>
+        <div class="mobile-content">
+            <div class="section-title">Organizations</div>
             
             <!-- ACLU -->
             <div class="org-header">
@@ -328,11 +316,11 @@
                     <div class="resource-description">Independent group seeking to reform UW police policies</div>
                 </li>
             </ul>
-        </section>
+        </div>
 
         <!-- Reports -->
-        <section class="section">
-            <div class="section-header">Reports</div>
+        <div class="mobile-content">
+            <div class="section-title">Reports</div>
             <ul class="resource-list">
                 <li class="resource-item">
                     <a href="https://issuu.com/2020spdcommunityassessment/docs/communityperspective_8x10" target="_blank">
@@ -351,7 +339,7 @@
                     </a>
                 </li>
             </ul>
-        </section>
+        </div>
 
         <div class="back-to-top">
             <a href="#top">Back to top</a>

@@ -2,232 +2,193 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Police Violence : About Us</title>
-    <meta name="description" content="About the creators of this police violence documentation website">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Police Violence : About Us - Mobile</title>
+    <meta name="description" content="About the creators of this police violence documentation website">
     
-    <!-- CSS -->
+    <!-- Mobile-optimized CSS -->
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Arial', sans-serif;
+            background-color: #000;
+            color: #fff;
             line-height: 1.6;
-            color: #333;
-            background-color: #fff;
         }
-
+        
         .mobile-header {
-            background: #2c3e50;
-            color: white;
-            padding: 1rem;
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            background-color: #111;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid #f1c84b;
         }
-
+        
         .mobile-nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-
-        .mobile-nav a {
-            color: white;
-            text-decoration: none;
-            padding: 0.5rem;
-            font-size: 0.9rem;
-        }
-
-        .mobile-nav .desktop-switch {
-            background: rgba(255,255,255,0.2);
-            border-radius: 4px;
-            padding: 0.4rem 0.8rem;
-            font-size: 0.8rem;
-        }
-
-        .page-title {
-            font-size: 1.5rem;
-            font-weight: bold;
+            background-color: #222;
+            padding: 15px;
             text-align: center;
         }
-
-        .content {
-            padding: 1.5rem;
-            max-width: 800px;
-            margin: 0 auto;
+        
+        .mobile-nav a {
+            color: #f1c84b;
+            text-decoration: none;
+            padding: 10px 15px;
+            margin: 5px;
+            display: inline-block;
+            border: 1px solid #f1c84b;
+            border-radius: 5px;
+            font-size: 14px;
         }
-
-        .section {
-            margin-bottom: 2rem;
+        
+        .mobile-nav a:hover {
+            background-color: #f1c84b;
+            color: #000;
         }
-
-        .section-title {
-            background: #34495e;
-            color: white;
-            padding: 1rem;
-            margin-bottom: 1.5rem;
-            border-radius: 4px;
-            font-size: 1.3rem;
+        
+        .mobile-title {
+            color: #f1c84b;
+            font-size: 28px;
             font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            margin-bottom: 10px;
         }
 
-        .section-content {
-            background: #f8f9fa;
-            padding: 1.5rem;
+        
+        .mobile-main {
+            padding: 20px;
+        }
+        
+        .mobile-content {
+            background-color: #111;
+            padding: 20px;
+            margin-bottom: 20px;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-left: 4px solid #f1c84b;
         }
-
+        
+        .section-title {
+            color: #f1c84b;
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
         .section-content p {
-            margin-bottom: 1rem;
-            color: #444;
+            margin-bottom: 15px;
+            font-size: 15px;
+            line-height: 1.6;
         }
-
-        .section-content p:last-child {
-            margin-bottom: 0;
-        }
-
+        
         .legal-orgs {
-            margin: 1rem 0;
+            margin: 20px 0;
         }
-
+        
         .legal-orgs ul {
             list-style: none;
             padding-left: 0;
         }
-
+        
         .legal-orgs li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #eee;
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: #222;
+            border-radius: 5px;
+            border-left: 3px solid #f1c84b;
         }
-
-        .legal-orgs li:last-child {
-            border-bottom: none;
-        }
-
+        
         .legal-orgs a {
-            color: #3498db;
+            color: #f1c84b;
             text-decoration: none;
-            font-weight: 500;
+            font-weight: bold;
         }
-
+        
         .legal-orgs a:hover {
             text-decoration: underline;
         }
-
+        
         .team-member {
-            background: white;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
+            background-color: #222;
+            padding: 20px;
+            margin-bottom: 20px;
             border-radius: 8px;
-            border-left: 4px solid #3498db;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-left: 4px solid #f1c84b;
         }
-
-        .team-member:last-child {
-            margin-bottom: 0;
-        }
-
+        
         .member-name {
-            font-size: 1.2rem;
+            color: #f1c84b;
+            font-size: 20px;
             font-weight: bold;
-            color: #2c3e50;
-            margin-bottom: 0.5rem;
+            margin-bottom: 8px;
         }
-
+        
         .member-title {
-            color: #7f8c8d;
+            color: #ccc;
             font-style: italic;
-            margin-bottom: 1rem;
+            margin-bottom: 15px;
+            font-size: 16px;
         }
-
+        
         .member-bio {
-            color: #444;
+            font-size: 15px;
             line-height: 1.6;
         }
-
-        .highlight-link {
-            color: #e74c3c;
+        
+        .desktop-link {
+            text-align: center;
+            padding: 20px;
+            background-color: #222;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        
+        .desktop-link a {
+            color: #f1c84b;
             text-decoration: none;
-            font-weight: 600;
         }
-
-        .highlight-link:hover {
-            text-decoration: underline;
-        }
-
+        
         .website-credit {
             text-align: center;
-            padding: 1.5rem;
-            background: #ecf0f1;
+            padding: 20px;
+            background-color: #111;
             border-radius: 8px;
-            margin-top: 2rem;
+            margin-top: 20px;
+            border-left: 4px solid #f1c84b;
         }
-
+        
         .website-credit a {
-            color: #3498db;
+            color: #f1c84b;
             text-decoration: none;
             font-weight: bold;
         }
-
-        @media (max-width: 480px) {
-            .mobile-nav {
-                flex-wrap: wrap;
-                gap: 0.25rem;
-            }
-
-            .mobile-nav a {
-                padding: 0.25rem 0.5rem;
-                font-size: 0.8rem;
-            }
-
-            .page-title {
-                font-size: 1.3rem;
-            }
-
-            .content {
-                padding: 1rem;
-            }
-
-            .section-content {
-                padding: 1rem;
-            }
-
-            .team-member {
-                padding: 1rem;
-            }
-
-            .section-title {
-                font-size: 1.1rem;
-                padding: 0.75rem;
-            }
-        }
+    </style>
     </style>
 </head>
 <body>
     <header class="mobile-header">
-        <nav class="mobile-nav">
-            <a href="../index.html?force=mobile">HOME</a>
-            <a href="incidents.html">INCIDENTS</a>
-            <a href="resources.html">RESOURCES</a>
-            <a href="about.html">ABOUT</a>
-            <a href="contact.html">CONTACT</a>
-            <a href="../about.html?force=desktop" class="desktop-switch">Desktop</a>
-        </nav>
-        <h1 class="page-title">About Us</h1>
+        <h1 class="mobile-title">About Us</h1>
     </header>
-
-    <main class="content">
+    
+    <nav class="mobile-nav">
+        <a href="index.html">HOME</a>
+        <a href="incidents.html">INCIDENTS</a>
+        <a href="resources.html">RESOURCES</a>
+        <a href="about.html">ABOUT</a>
+        <a href="contact.html">CONTACT</a>
+    </nav>
+    
+    <main class="mobile-main">
+        <div class="desktop-link">
+            <a href="../about.html?force=desktop">🖥️ Switch to Desktop Version</a>
+        </div>
+        
         <!-- Methods Section -->
-        <section class="section">
+        <div class="mobile-content">
             <div class="section-title">Methods</div>
             <div class="section-content">
                 <p>This website presents a collection of affidavits filed by plaintiffs who experienced harm at the hands of Seattle police in 2020. All the materials are a matter of public record in the court system, but we contacted plaintiffs through their attorneys to offer them the opportunity to opt out or remain anonymous.</p>
@@ -238,7 +199,7 @@
                         <li>
                             <a href="https://www.aclu-wa.org/" target="_blank">• American Civil Liberties Union</a><br>
                             Lead attorney Robert S. Chang<br>
-                            Professor at Seattle University's Fred T. Korematsu Center for Law & Equality
+                            Professor at Seattle University's <a href="https://law.seattleu.edu/centers-and-institutes/korematsu-center" target="_blank" style="color: #f1c84b; text-decoration: underline;">Fred T. Korematsu Center for Law & Equality</a>
                         </li>
                         <li>
                             <a href="https://www.stritmatter.com/" target="_blank">• Stritmatter Kessler Koehler & Moore</a><br>
@@ -251,11 +212,11 @@
                     </ul>
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- Website Team Section -->
-        <section class="section">
-            <div class="section-title">Website</div>
+        <div class="mobile-content">
+            <div class="section-title">Website Team</div>
             <div class="section-content">
                 <p>This website was created by a group of four volunteers associated with the University of Washington School of Public Health. We received no funding for the work, however, and consider the project "ad hoc."</p>
                 
@@ -283,7 +244,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
         <div class="website-credit">
             Website by <a href="https://nouela.design/" target="_blank">Nouela Johnston</a>
