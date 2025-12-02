@@ -1,0 +1,17 @@
+/* Remove left margins/padding from filter components for proper left alignment */
+
+.search-wrapper,
+.sort-wrapper,
+.filter-wrapper {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+.paragraph-44 {
+  margin-left: 0 !important;
+}
+
+.text-block-26 {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}

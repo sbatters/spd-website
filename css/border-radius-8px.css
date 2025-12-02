@@ -109,6 +109,55 @@
     border-radius: 8px !important;
 }
 
+/* Button stroke override - reduce to 1px */
+.sort-button {
+    box-shadow: inset 0 0 0 1px #f9f8f9 !important;
+}
+
+.sort-button:hover {
+    box-shadow: inset 0 0 0 1px #240c2e !important;
+}
+
+.sort-button.green {
+    box-shadow: inset 0 0 0 1px #f3faea !important;
+}
+
+.sort-button.green:hover {
+    box-shadow: inset 0 0 0 1px #8ecd2f !important;
+}
+
+.sort-button.blue {
+    box-shadow: inset 0 0 0 1px #ebf6fe !important;
+}
+
+.sort-button.blue:hover {
+    box-shadow: inset 0 0 0 1px #2795eb !important;
+}
+
+.sort-button.red {
+    box-shadow: inset 0 0 0 1px #fdebf1 !important;
+}
+
+.sort-button.red:hover {
+    box-shadow: inset 0 0 0 1px #fc4c8f !important;
+}
+
+.sort-button.yellow {
+    box-shadow: inset 0 0 0 1px #fffae6 !important;
+}
+
+.sort-button.yellow:hover {
+    box-shadow: inset 0 0 0 1px #ffd60a !important;
+}
+
+.sort-button.orange {
+    box-shadow: inset 0 0 0 1px #fcede4 !important;
+}
+
+.sort-button.orange:hover {
+    box-shadow: inset 0 0 0 1px #f06a12 !important;
+}
+
 /* Text blocks that function as content containers */
 .text-block-15,
 .text-block-16,
