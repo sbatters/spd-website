@@ -1,0 +1,32 @@
+/* Modal size constraints for desktop */
+.modal.inner {
+  max-width: 900px;
+  max-height: 800px;
+  overflow-y: auto;
+  margin: auto !important;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding-right: 32px !important;
+  box-sizing: border-box;
+}
+
+/* Center modal container when it's displayed */
+.modal-container.front {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Reset for mobile devices */
+@media screen and (max-width: 767px) {
+  .modal.inner {
+    max-width: none;
+    max-height: none;
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+  }
+}
