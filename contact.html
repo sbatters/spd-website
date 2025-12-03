@@ -65,6 +65,18 @@
       "hideDecimalForWholeNumbers": false
     };
   </script>
+  
+  <!-- Custom button hover styles -->
+  <style>
+    .submit-button:hover {
+      background-color: #1a5490 !important;
+      transition: background-color 0.3s ease;
+    }
+    .submit-button:focus {
+      outline: 2px solid #1a5490;
+      outline-offset: 2px;
+    }
+  </style>
 </head>
 
 <script>
@@ -201,8 +213,12 @@
             id="contact-email"
             aria-describedby="email-help-text"
           />
-          <div class="text-block-33" id="email-help-text">
-            We do not require an email address to submit a comment, but please include your email address if you'd like a response.
+          <div class="text-block-33" id="email-help-text" style="color: orange; display: flex; align-items: center; gap: 8px;">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="orange" xmlns="http://www.w3.org/2000/svg" style="flex-shrink: 0;">
+              <circle cx="10" cy="10" r="9" stroke="orange" stroke-width="1.5" fill="none"/>
+              <text x="10" y="14.5" font-size="13" font-weight="bold" text-anchor="middle" fill="orange">i</text>
+            </svg>
+            <span style="font-size: 10pt;">We do not require an email address to submit a comment, but please include your email address if you'd like a response.</span>
           </div>
         </div>
       </div>
@@ -229,6 +245,7 @@
         data-wait="Sending..." 
         class="submit-button w-button" 
         value="SEND"
+        style="border-radius: 4px;"
       />
     </form>
     
