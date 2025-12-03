@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - feature/new-updates
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
