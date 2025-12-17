@@ -66,6 +66,9 @@
     };
   </script>
   
+  <!-- Google reCAPTCHA v3 -->
+  <script src="https://www.google.com/recaptcha/api.js?render=6LfYour_Site_Key_Here"></script>
+  
   <!-- Custom button hover styles -->
   <style>
     .submit-button:hover {
@@ -82,6 +85,9 @@
 <script>
   // 🔗 Paste your Logic App URL here:
   const LOGIC_APP_URL = "https://prod-21.northcentralus.logic.azure.com:443/workflows/3be73110e607437b9f7428e0c491d72d/triggers/When_an_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_an_HTTP_request_is_received%2Frun&sv=1.0&sig=Tqnslo9r6iq-EKC9HD61ofduB5GdTtIq5Z2FokM3kss";
+  
+  // ⚠️ Replace this with your actual Google reCAPTCHA v3 site key
+  const RECAPTCHA_SITE_KEY = "6LfYour_Site_Key_Here";
 
   document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("email-form");
@@ -130,13 +136,17 @@
         return;
       }
 
-      const payload = {
-        name: name,
-        email: email,
-        message: message
-      };
-
       try {
+        // Execute reCAPTCHA v3
+        const recaptchaToken = await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'submit' });
+
+        const payload = {
+          name: name,
+          email: email,
+          message: message,
+          recaptchaToken: recaptchaToken
+        };
+
         const res = await fetch(LOGIC_APP_URL, {
           method: "POST",
           headers: {

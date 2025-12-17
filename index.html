@@ -695,8 +695,8 @@
                 if (videoPopup) {
                     videoPopup.style.display = 'block';
                     
-                    // Add event listener to close button
-                    var closeButton = videoPopup.querySelector('[data-w-id="b34c6847-12e8-158a-304b-5bc291e670bb"]');
+                    // Add event listener to close button (the div container)
+                    var closeButton = videoPopup.querySelector('[data-w-id="3a0ebba8-4045-3bb1-85f0-ac350d1d9781"]');
                     if (closeButton) {
                         closeButton.addEventListener('click', function() {
                             localStorage.setItem('hasSeenVideoPopup', 'true');
